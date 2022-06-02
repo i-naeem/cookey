@@ -10,10 +10,16 @@ const getCookies = async (url) => {
 
     const response = await page.goto(url);
 
+    const status = response.status();
+    const cookies = await page.cookies();
 
-    browser.close();
+    browser.close()
+    return {
+        status,
+        cookies,
+        cookiesString: cookies.map(cookie => `${cookie.name}=${cookie.value}`).join(';')
+    }
 
-    return response.statusText
 }
 
 module.exports = {

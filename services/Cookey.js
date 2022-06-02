@@ -2,26 +2,31 @@ const puppeteer = require('puppeteer');
 const getRandomUserAgent = require('../utils/getRandomUserAgent');
 
 const getCookies = async (url) => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
 
-    const userAgent = getRandomUserAgent();
-    page.setUserAgent(userAgent)
+  const page = await browser.newPage();
 
-    const response = await page.goto(url);
+  const userAgent = getRandomUserAgent();
+  page.setUserAgent(userAgent);
 
-    const status = response.status();
-    const cookies = await page.cookies();
+  const response = await page.goto(url);
 
-    browser.close()
-    return {
-        status: 'SUCCEED',
-        cookies,
-        cookiesString: cookies.map(cookie => `${cookie.name}=${cookie.value}`).join(';')
-    }
+  const status = response.status();
+  const cookies = await page.cookies();
 
-}
+  browser.close();
+  return {
+    status: 'SUCCEED',
+    cookies,
+    cookiesString: cookies
+      .map((cookie) => `${cookie.name}=${cookie.value}`)
+      .join(';'),
+  };
+};
 
 module.exports = {
-    getCookies
-}
+  getCookies,
+};

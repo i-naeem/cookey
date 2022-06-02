@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookey</title>
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <h1>Cookey</h1>
+        <p>
+          A rest api to fetch Javascript generated cookies from websites. These
+          cookies can then be used to scrape those website with simple fetch.
+        </p>
+      </section>
+
+      <section>
+        <pre>
+            {
+                "name": "Cookey",
+                "description": "A rest api to fetch Javascript generated cookies from websites.",
+                "router": {
+                    "/api": {
+                        "method": "GET",
+                        "args": {
+                            "url": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Website url you want to get cookies for.",
+                            }
+                        }
+                    }
+                }
+            }
+          </pre
+        >
+      </section>
+    </main>
+  </body>
+</html>

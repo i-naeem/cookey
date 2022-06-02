@@ -15,4 +15,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).json({
+        type: 'FAILED',
+        message: err.message
+    })
+})
+
 module.exports = app;

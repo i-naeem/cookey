@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const getRandomUserAgent = require('../uitls/getRandomUserAgent');
+const getRandomUserAgent = require('../utils/getRandomUserAgent');
 
 const getCookies = async (url) => {
     const browser = await puppeteer.launch();
@@ -15,7 +15,7 @@ const getCookies = async (url) => {
 
     browser.close()
     return {
-        status,
+        status: 'SUCCEED',
         cookies,
         cookiesString: cookies.map(cookie => `${cookie.name}=${cookie.value}`).join(';')
     }

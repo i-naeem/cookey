@@ -1,10 +1,10 @@
-const puppeteer = require('puppeteer');
-const getRandomUserAgent = require('../utils/getRandomUserAgent');
+const puppeteer = require("puppeteer");
+const getRandomUserAgent = require("../utils/getRandomUserAgent");
 
 const getCookies = async (url) => {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
   const page = await browser.newPage();
@@ -19,11 +19,12 @@ const getCookies = async (url) => {
 
   browser.close();
   return {
-    status: 'SUCCEED',
+    status: "SUCCEED",
+    userAgent,
     cookies,
     cookiesString: cookies
       .map((cookie) => `${cookie.name}=${cookie.value}`)
-      .join(';'),
+      .join(";"),
   };
 };
 
